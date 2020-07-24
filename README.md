@@ -1,5 +1,5 @@
 ## Ingress Telegrambot
-## Useage
+## Usage
 ## installation
 
 # ingress telegrambot
@@ -28,7 +28,7 @@ The bot can reply on some simple commands.
 /test - this returns a simple graph to the agent
 ![Image of Graph user stat](https://github.com/w2k8/ingress-telegrambot/blob/master/images/AgentName-3.png)
 
-# Useage
+# Usage
 
 Copy the agent stats from ingress and past it into telegram, so that you send the data to youre bot.
 
