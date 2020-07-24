@@ -127,15 +127,15 @@ def send_welcome(message):
 	bot.send_message(cid, "Ingress Agent Stats bot")
 	log.debug("After send start")
 
+
 @bot.message_handler(commands=['stats', 'help'])
-def send_welcome(message):
+def send_stats(message):
 	cid = message.chat.id
 	agent_telegram_id = message.from_user.id
 
 	conn = sqlite3.connect('agent_stats.db')
 	c = conn.cursor()
 	player_ap = []
-	player_uniekportal = []
 	player_resonator_deployed = []
 	player_links_created = []
 	player_control_field_created = []
@@ -232,6 +232,7 @@ def send_welcome(message):
 		pass
 
 	plt.clf()
+	plt.title("Ingress player stats: {}".format(player_name))
 	plt.plot(stats_date, player_recharged, 'b-')
 	plt.xticks(stats_date, color='b', rotation=45)
 	plt.ylabel("XM Recharged", color='b')
@@ -247,13 +248,12 @@ def send_welcome(message):
 		pass
 
 @bot.message_handler(commands=['test', 'help'])
-def send_welcome(message):
+def send_test(message):
 	cid = message.chat.id
 	agent_telegram_id = message.from_user.id
 	conn = sqlite3.connect('agent_stats.db')
 	c = conn.cursor()
 
-	player_ap = []
 	player_recharged = []
 
 	stats_date = []
@@ -265,11 +265,10 @@ def send_welcome(message):
 
 	plt.clf()
 	plt.title("Ingress player stats: {}".format(player_name))
-
 	plt.plot(stats_date, player_recharged, 'b-')
 	plt.xticks(stats_date, color='b', rotation=45)
 	plt.ylabel("XM Recharged", color='b')
-	plt.xlabel("Time", color='b')
+	plt.xlabel("Time", color='b', rotation=45)
 	plt.savefig('images/{}.png'.format(cid))
 	img = open('images/{}.png'.format(cid), 'rb')
 	log.debug("Before send test")

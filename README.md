@@ -1,4 +1,8 @@
-# ingress-telegrambot
+## Ingress Telegrambot
+## Useage
+## installation
+
+# ingress telegrambot
 
 This is a simple telegram bot for ingress agents who wants to save there stats in a database
 
@@ -82,3 +86,20 @@ NL-1331 Meetup(s) Attended - 1
 First Saturday Events - 3
 Recursions - 1
 ```
+
+# Installation
+
+Install the required packeges from requirement.txt
+
+If you want, you can Create a supervisor config file or create a service
+You can, if you want, use python virtual enviroment.
+
+Example Supervisor conf:
+```
+[program:telegrambot]
+command=/srv/venv/bin/python3 agentstats.py
+directory=/data/telegrambot
+stdout_logfile=//data/telegrambot/process_output.txt
+redirect_stderr=true
+```
+
