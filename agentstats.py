@@ -51,9 +51,9 @@ agent_stats_objects = [ 'Time Span',  							#1
 						'Largest Field MUs x Days',				#36
 						'Forced Drone Recalls',					#37
 						'Unique Missions Completed',			#38
-						'Hacks Drone',							#39
-						'Hacks Glyph',							#40
-						'Hack Points',							#41
+						'Hacks',								#39
+						'Drone Hacks',							#40
+						'Glyph Hack Points',					#41
 						'Longest Hacking Streak',				#42
 						'Agents Successfully Recruited',		#43
 						'Mission Day(s) Attended',				#44
@@ -106,9 +106,9 @@ def init_db():
 				'Largest Field MUs x Days',
 				'Forced Drone Recalls',
 				'Unique Missions Completed',
-				'Hacks Drone',
-				'Hacks Glyph',
-				'Hack Points',
+				'Hacks',
+				'Drone Hacks',
+				'Glyph Hack Points',
 				'Longest Hacking Streak',
 				'Agents Successfully Recruited',
 				'Mission Day(s) Attended',
