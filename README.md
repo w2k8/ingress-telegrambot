@@ -29,7 +29,7 @@ The bot can reply on some simple commands.
 ![Image of Graph user stat](https://github.com/w2k8/ingress-telegrambot/blob/master/images/AgentName-3.png)
 
 /test1 - this returns a new graph from the agent
-![Image of combined user stat](https://github.com/w2k8/ingress-telegrambot/blob/master/images/Figure_4.png.png)
+![Image of combined user stat](https://github.com/w2k8/ingress-telegrambot/blob/master/images/Figure_4.png)
 
 # Usage
 
