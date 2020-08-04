@@ -13,6 +13,11 @@ log.setLevel(logging.DEBUG)
 
 bot = telebot.TeleBot("Youre_bot_api")
 
+reply_stats = False
+reply_diff = True
+# Index should match the agent stats that should be returned
+reply_diff_index = '00000101110100110111101111111110000001111000000'
+
 agent_stats_objects = [ 'Time Span',  							#1
 						'Agent Name', 							#2
 						'Agent Faction',						#3
@@ -373,48 +378,100 @@ def send_test1(message):
 
 @bot.message_handler(func=lambda message: True)
 def echo_all(message):
+	# Define global variablen
 	global agent_stats_objects
+	global reply_stats
+	global reply_diff
+	global reply_diff_index
+
+	# define the database
+	conn = sqlite3.connect('agent_stats.db')
+
+	# cid => connection id 
 	cid = message.chat.id
+
+	# get the telegram user id.
 	agent_telegram_id = message.from_user.id
+	
 	agent_stats_zip = []
 	agent_stats_insert = []
+	
+	# test is the message contains 'Time Span'
 	if message.text.startswith('Time Span'):
 		reply = 'Agent stats:\n'
+		r_stats = reply
+		r_diff = reply
 			
 		stats_counter = 0
 		agent_stats = message.text.split('\n')
+		# test if the second line of text contains the text 'ALL TIME', English agent
 		if agent_stats[1].startswith('ALL TIME'):
 			agent_stats_values = agent_stats[1].split('ALL TIME ')[1].split(' ')
 			agent_stats_values.insert(0,"ALL TIME")
 
+		# test if the second line of text contains the text 'ALLE', Dutch agent 
 		if agent_stats[1].startswith('ALLE'):
 			agent_stats_values = agent_stats[1].split('ALLE ')[1].split(' ')
 			agent_stats_values.insert(0,"ALLE")
 
-
 		for stats in agent_stats_objects:
+			# Test if the stats is in the message. Not all agents might have the same stats. (dont use the drone, or have done a 'first saturday' for example)
+			# Combine the stats and the value
 			if stats in message.text:
 				agent_stats_zip.append((stats, agent_stats_values[stats_counter]))
 				stats_counter += 1
 			else:
 				agent_stats_zip.append((stats, 0))
 
-		# agent_stats_zip = zip(agent_stats_objects,agent_stats_values)
 		agent_stats_insert = []
-		for k,v in agent_stats_zip:
+
+		# Connect to the database
+		c = conn.cursor()
+		# Get the last row from the database table
+		for lastrow in c.execute("SELECT * from agents_stats WHERE agent_telegram_id={}".format(agent_telegram_id)):
+				print(lastrow[6])
+				try:
+						if lastrow[6] > l[6]:
+								l = lastrow
+				except:
+						l = lastrow
+		# Close the connecttion to the database
+		conn.close()
+		# Slice the return list, get rid of the telegram user id
+		lastrow = lastrow[1:]
+		reply = 'Agent stats:\nLast submit was: {} {}\n'.format(str(lastrow[3]), str(lastrow[4])
+		r_stats = reply
+		r_diff = '{}\nDisplaying changes sins last submit'.format(reply)
+
+		for k, v in agent_stats_zip:
 			agent_stats_insert.append(v)
-			print(k,v)
-			reply += ('{} - {}\n'.format(k,v))
+
+			if reply_stats:
+				r_stats += '{} - {}\n'.format(k, v)
+			if reply_diff:
+
+				if reply_diff_index[agent_stats_objects.index(k)] == '1':
+					# Get the index from agentstats and get the corrcct column from the index
+					try:
+						r_diff += '{} - {}\n'.format(k, int(v) - int(lastrow[agent_stats_objects.index(k)]))
+					except:
+						pass		
 
 		try:
 			log.info("Before reply msg")
-			bot.send_message(cid, '{}'.format(reply))
+			if reply_stats:
+				bot.send_message(cid, '{}'.format(r_stats))
+			if reply_diff:
+				bot.send_message(cid, '{}'.format(r_diff))
 			log.info("After reply msg")
 		# bot.send_message(id, text)
 		except Exception as e:
 			time.sleep(1)
 			log.debug("Exeption: {} - Before reply msg".format(e))
-			bot.send_message(cid, '{}'.format(reply))
+			if reply_stats:
+				bot.send_message(cid, '{}'.format(r_stats))
+			if reply_diff:
+				bot.send_message(cid, '{}'.format(r_diff))
 			log.debug("Exeption: {} - After reply msg".format(e))
 
 		agent_stats_insert.insert(0,agent_telegram_id)

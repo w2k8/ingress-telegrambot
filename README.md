@@ -94,7 +94,7 @@ Recursions - 1
 
 Install the required packeges from requirement.txt
 
-If you want, you can Create a supervisor config file or create a service
+If you want, you can Create a supervisor config file or create a service. 
 You can, if you want, use python virtual enviroment.
 
 Example Supervisor conf:
