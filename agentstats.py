@@ -18,6 +18,13 @@ reply_diff = True
 # Index should match the agent stats that should be returned
 reply_diff_index = '00000101110100110111101111111110000001111000000'
 
+welcome = 	'Thanks for submitting youre stats.\n\n' 
+first_message = 'If you send youre stats on a daily basis,\n' \
+				'you will recieve youre daily progress\n' \
+				'Possible commands: /stats\n' \
+				'                   /test\n' \
+				'                   /test1\n' 			
+
 agent_stats_objects = [ 'Time Span',  							#1
 						'Agent Name', 							#2
 						'Agent Faction',						#3
@@ -429,19 +436,19 @@ def echo_all(message):
 		c = conn.cursor()
 		# Get the last row from the database table
 		for lastrow in c.execute("SELECT * from agents_stats WHERE agent_telegram_id={}".format(agent_telegram_id)):
-				print(lastrow[6])
-				try:
-						if lastrow[6] > l[6]:
-								l = lastrow
-				except:
-						l = lastrow
+			try:
+				if lastrow[7] > l[7]:
+					l = lastrow
+			except:
+				l = lastrow
 		# Close the connecttion to the database
 		conn.close()
 		# Slice the return list, get rid of the telegram user id
 		lastrow = lastrow[1:]
-		reply = 'Agent stats:\nLast submit was: {} {}\n'.format(str(lastrow[3]), str(lastrow[4])
+		
+		reply = welcome + 'Last submit was: {} {}\n'.format(str(lastrow[3]), str(lastrow[4]))
 		r_stats = reply
-		r_diff = '{}\nDisplaying changes sins last submit'.format(reply)
+		r_diff = '{}\nDisplaying changes since last submit\n'.format(reply)
 
 		for k, v in agent_stats_zip:
 			agent_stats_insert.append(v)
@@ -453,7 +460,8 @@ def echo_all(message):
 				if reply_diff_index[agent_stats_objects.index(k)] == '1':
 					# Get the index from agentstats and get the corrcct column from the index
 					try:
-						r_diff += '{} - {}\n'.format(k, int(v) - int(lastrow[agent_stats_objects.index(k)]))
+						if int(v) - int(lastrow[agent_stats_objects.index(k)]) != 0:
+							r_diff += '{} - {}\n'.format(k, int(v) - int(lastrow[agent_stats_objects.index(k)]))
 					except:
 						pass		
 
