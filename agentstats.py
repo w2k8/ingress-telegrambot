@@ -18,9 +18,9 @@ reply_diff = True
 # Index should match the agent stats that should be returned
 reply_diff_index = '00000101110100110111101111111110000001111000000'
 
-welcome = 	'Thanks for submitting youre stats.\n\n' 
-first_message = 'If you send youre stats on a daily basis,\n' \
-				'you will recieve youre daily progress\n' \
+welcome = 	"Thanks for submitting you're stats.\n\n" 
+first_message = "If you send you're stats on a daily basis,\n" \
+				"you will receive you're daily progress\n" \
 				'Possible commands: /stats\n' \
 				'                   /test\n' \
 				'                   /test1\n' 			
@@ -356,7 +356,7 @@ def send_test1(message):
 
 	host.set_xlabel("Time")
 	host.set_ylabel("Player AP")
-	par1.set_ylabel("Linkes created")
+	par1.set_ylabel("Linke's created")
 	par2.set_ylabel("Control field created")
 
 	host.yaxis.label.set_color(p1.get_color())
@@ -385,7 +385,7 @@ def send_test1(message):
 
 @bot.message_handler(func=lambda message: True)
 def echo_all(message):
-	# Define global variablen
+	# Define global variable
 	global agent_stats_objects
 	global reply_stats
 	global reply_diff
@@ -422,7 +422,7 @@ def echo_all(message):
 			agent_stats_values.insert(0,"ALLE")
 
 		for stats in agent_stats_objects:
-			# Test if the stats is in the message. Not all agents might have the same stats. (dont use the drone, or have done a 'first saturday' for example)
+			# Test if the stats is in the message. Not all agents might have the same stats. (don't use the drone, or have done a 'first saturday' for example)
 			# Combine the stats and the value
 			if stats in message.text:
 				agent_stats_zip.append((stats, agent_stats_values[stats_counter]))
@@ -441,7 +441,7 @@ def echo_all(message):
 					l = lastrow
 			except:
 				l = lastrow
-		# Close the connecttion to the database
+		# Close the connection to the database
 		conn.close()
 		# Slice the return list, get rid of the telegram user id
 		lastrow = lastrow[1:]
@@ -458,7 +458,7 @@ def echo_all(message):
 			if reply_diff:
 
 				if reply_diff_index[agent_stats_objects.index(k)] == '1':
-					# Get the index from agentstats and get the corrcct column from the index
+					# Get the index from agentstats and get the correct column from the index
 					try:
 						if int(v) - int(lastrow[agent_stats_objects.index(k)]) != 0:
 							r_diff += '{} - {}\n'.format(k, int(v) - int(lastrow[agent_stats_objects.index(k)]))
