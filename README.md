@@ -1,3 +1,5 @@
+Updated to work with Ingress version 2.53.2-8d3f14d2
+
 ## Ingress Telegrambot
 ## Usage
 ## installation
