@@ -11,7 +11,9 @@ logging.basicConfig(format='%(asctime)s %(message)s')
 log = logging.getLogger(__name__)
 log.setLevel(logging.DEBUG)
 
-bot = telebot.TeleBot("Youre_bot_api")
+bot = telebot.TeleBot("You're_bot_api")
+
+Ingress_version = '2.53.2-8d3f14d2'
 
 reply_stats = False
 reply_diff = True
@@ -40,7 +42,7 @@ agent_stats_objects = [ 'Time Span',  							#1
 						'XM Collected',							#13
 						'OPR Agreements',						#14
 						'Portal Scans Uploaded',				#15
-						'Scout Controller on Unique Portals',	#16
+						'Uniques Scout Controlled',				#16
 						'Distance Walked',						#17
 						'Resonators Deployed',					#18
 						'Links Created',						#19
@@ -143,7 +145,7 @@ def make_patch_spines_invisible(ax):
 def send_welcome(message):
 	cid = message.chat.id
 	log.debug("Before send start")
-	bot.send_message(cid, "Ingress Agent Stats bot")
+	bot.send_message(cid, "Ingress Agent Stats bot\nTested with ingress version: {}".format(Ingress_version))
 	log.debug("After send start")
 
 
@@ -475,12 +477,12 @@ def echo_all(message):
 		# bot.send_message(id, text)
 		except Exception as e:
 			time.sleep(1)
-			log.debug("Exeption: {} - Before reply msg".format(e))
+			log.debug("Exception: {} - Before reply msg".format(e))
 			if reply_stats:
 				bot.send_message(cid, '{}'.format(r_stats))
 			if reply_diff:
 				bot.send_message(cid, '{}'.format(r_diff))
-			log.debug("Exeption: {} - After reply msg".format(e))
+			log.debug("Exception: {} - After reply msg".format(e))
 
 		agent_stats_insert.insert(0,agent_telegram_id)
 
@@ -504,9 +506,9 @@ try:
     log.debug("After bot polling")
 except Exception as e:# urllib.error.HTTPError:
     time.sleep(3)
-    log.debug("Exeption: {} - Before bot polling".format(e))
+    log.debug("Exception: {} - Before bot polling".format(e))
     bot.polling(none_stop=True)
-    log.debug("Exeption: {} - After bot polling".format(e))
+    log.debug("Exception: {} - After bot polling".format(e))
 
 # while True:
 #     time.sleep(20)
