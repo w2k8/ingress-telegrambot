@@ -44,36 +44,37 @@ agent_stats_objects = [ 'Time Span',  							#1
 						'Portal Scans Uploaded',				#15
 						'Uniques Scout Controlled',				#16
 						'Distance Walked',						#17
-						'Resonators Deployed',					#18
-						'Links Created',						#19
-						'Control Fields Created',				#20
-						'Mind Units Captured',					#21
-						'Longest Link Ever Created',			#22
-						'Largest Control Field',				#23
-						'XM Recharged',							#24
-						'Portals Captured',						#25
-						'Unique Portals Captured',				#26
-						'Mods Deployed',						#27
-						'Resonators Destroyed',					#28
-						'Portals Neutralized',					#29
-						'Enemy Links Destroyed',				#30
-						'Enemy Fields Destroyed',				#31
-						'Max Time Portal Held',					#32
-						'Max Time Link Maintained',				#33
-						'Max Link Length x Days',				#34
-						'Max Time Field Held',					#35
-						'Largest Field MUs x Days',				#36
-						'Forced Drone Recalls',					#37
-						'Unique Missions Completed',			#38
-						'Hacks',								#39
-						'Drone Hacks',							#40
-						'Glyph Hack Points',					#41
-						'Longest Hacking Streak',				#42
-						'Agents Successfully Recruited',		#43
-						'Mission Day(s) Attended',				#44
-						'NL-1331 Meetup(s) Attended',			#45
-						'First Saturday Events',				#46
-						'Recursions']							#47
+						'Kinetic Capsules Completed',			#18
+						'Resonators Deployed',					#19
+						'Links Created',						#20
+						'Control Fields Created',				#21
+						'Mind Units Captured',					#22
+						'Longest Link Ever Created',			#23
+						'Largest Control Field',				#24
+						'XM Recharged',							#25
+						'Portals Captured',						#26
+						'Unique Portals Captured',				#27
+						'Mods Deployed',						#28
+						'Resonators Destroyed',					#29
+						'Portals Neutralized',					#30
+						'Enemy Links Destroyed',				#31
+						'Enemy Fields Destroyed',				#32
+						'Max Time Portal Held',					#33
+						'Max Time Link Maintained',				#34
+						'Max Link Length x Days',				#35
+						'Max Time Field Held',					#36
+						'Largest Field MUs x Days',				#37
+						'Forced Drone Recalls',					#38
+						'Unique Missions Completed',			#39
+						'Hacks',								#40
+						'Drone Hacks',							#41
+						'Glyph Hack Points',					#42
+						'Longest Hacking Streak',				#43
+						'Agents Successfully Recruited',		#44
+						'Mission Day(s) Attended',				#45
+						'NL-1331 Meetup(s) Attended',			#46
+						'First Saturday Events',				#47
+						'Recursions']							#48
 
 
 def init_db():
@@ -99,6 +100,7 @@ def init_db():
 				'Portal Scans Uploaded',
 				'Scout Controller on Unique Portals',
 				'Distance Walked',
+				'Kinetic Capsules Completed',
 				'Resonators Deployed',
 				'Links Created',
 				'Control Fields Created',
