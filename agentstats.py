@@ -13,12 +13,12 @@ log.setLevel(logging.DEBUG)
 
 bot = telebot.TeleBot("You're_bot_api")
 
-Ingress_version = '2.53.2-8d3f14d2'
+Ingress_version = '2.57.2'
 
 reply_stats = False
 reply_diff = True
 # Index should match the agent stats that should be returned
-reply_diff_index = '00000101110100110111101111111110000001111000000'
+reply_diff_index = '000001011101001101011101111111110000001111000000'
 
 welcome = 	"Thanks for submitting you're stats.\n\n" 
 first_message = "If you send you're stats on a daily basis,\n" \
@@ -37,7 +37,7 @@ agent_stats_objects = [ 'Time Span',  							#1
 						'Current AP',							#8
 						'Unique Portals Visited',				#9
 						'Unique Portals Drone Visited',			#10
-						'Furthest Drone Flight Distance',		#11
+						'Furthest Drone Distance',				#11
 						'Portals Discovered',					#12
 						'XM Collected',							#13
 						'OPR Agreements',						#14
@@ -93,7 +93,7 @@ def init_db():
 				'Current AP',
 				'Unique Portals Visited',
 				'Unique Portals Drone Visited',
-				'Furthest Drone Flight Distance',
+				'Furthest Drone Distance',
 				'Portals Discovered',
 				'XM Collected',
 				'OPR Agreements',
@@ -492,7 +492,7 @@ def echo_all(message):
 		c = conn.cursor()
 
 		# Insert a row of data		
-		c.execute('INSERT INTO agents_stats VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)', agent_stats_insert)
+		c.execute('INSERT INTO agents_stats VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)', agent_stats_insert)
 		conn.commit()
 		conn.close()
 
