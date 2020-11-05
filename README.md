@@ -22,23 +22,12 @@ Tested and used with a Raspberry Pi 2, with debian as OS.
 The bot can reply on some simple commands.
 
 
-/stats - This returns some graphs from the agent
-![First image of Graph user stat](https://github.com/w2k8/ingress-telegrambot/blob/master/images/AgentName-1.png)
-![Second image of Graph user stat](https://github.com/w2k8/ingress-telegrambot/blob/master/images/AgentName-2.png)
-![Third image of Graph user stat](https://github.com/w2k8/ingress-telegrambot/blob/master/images/AgentName-3.png)
-
-/test - this returns a simple graph from the agent
-![Image of Graph user stat](https://github.com/w2k8/ingress-telegrambot/blob/master/images/AgentName-3.png)
-
-/test1 - this returns a new graph from the agent
-![Image of combined user stat](https://github.com/w2k8/ingress-telegrambot/blob/master/images/Figure_4.png)
 
 # Usage
 
 Copy the agent stats from ingress and past it into telegram, so that you send the data to you're bot.
 
 ![Agent stat](https://github.com/w2k8/ingress-telegrambot/blob/master/images/AgentName.png)
-
 
 When you have set: 'reply_stats: True' you should receive a message like this:
 ```
