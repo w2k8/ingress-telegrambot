@@ -10,14 +10,14 @@ log.setLevel(logging.DEBUG)
 
 bot = telebot.TeleBot("You're_bot_api")
 
-Ingress_version = '2.58.1'
+Ingress_version = '2.63.2'
 
 reply_stats = False
 reply_diff = True
 # Index should match the agent stats that should be returned
 #                   00000000011111111112222222222333333333344444444445
 #                   12345678901234567890123456789012345678901234567890
-reply_diff_index = '00000101110100110101110111111111000000111100000'
+reply_diff_index = '000001011101001101011101111111110000001111000000'
 
 welcome = 	"Thanks for submitting you're stats.\n\n" 
 first_message = "If you send you're stats on a daily basis,\n" \
@@ -66,10 +66,11 @@ agent_stats_objects = [ 'Time Span',  							#1
 						'Drone Hacks',							#41
 						'Glyph Hack Points',					#42
 						'Longest Hacking Streak',				#43
-						'Mission Day(s) Attended',				#44
-						'NL-1331 Meetup(s) Attended',			#45
-						'First Saturday Events',				#46
-						'Recursions']							#47
+						'Months Subscribed',					#44
+						'Mission Day(s) Attended',				#45
+						'NL-1331 Meetup(s) Attended',			#46
+						'First Saturday Events',				#47
+						'Recursions']							#48
 
 
 def init_db():
@@ -121,6 +122,7 @@ def init_db():
 				'Drone Hacks',
 				'Glyph Hack Points',
 				'Longest Hacking Streak',
+				'Months Subscribed',
 				'Mission Day(s) Attended',
 				'NL-1331 Meetup(s) Attended',
 				'First Saturday Events',
